@@ -134,7 +134,6 @@ def registered_keyboard_bn():
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user = update.effective_user
     add_user(user.id, user.username or "", user.first_name or "", "en")
-
     await update.message.reply_text(
         "Please choose your language / অনুগ্রহ করে ভাষা নির্বাচন করুন:",
         reply_markup=language_keyboard()
@@ -147,20 +146,28 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     if query.data == 'lang_en':
         add_user(user.id, user.username or "", user.first_name or "", "en")
-        welcome_text = """⚽ WELCOME TO THE ELITE ANALYSIS HUB
+        welcome_text = ("⚽ WELCOME TO THE ELITE ANALYSIS HUB" + "
 
-📊 Daily football statistics and data-driven predictions.
-🏆 Premier League, La Liga, Champions League coverage.
+" +
+                        "📊 Daily football statistics and data-driven predictions." + "
+" +
+                        "🏆 Premier League, La Liga, Champions League coverage." + "
 
-🎯 HOW TO ACCESS VIP MODEL OUTPUTS:
-1️⃣ Register on our partner platform using the link below.
-2️⃣ Complete your first transaction (Minimum 500 BDT).
-3️⃣ Return here and click "I Registered".
-4️⃣ Type your Partner Site ID in this chat.
-5️⃣ Our team will verify within 24 hours and send your private access link.
+" +
+                        "🎯 HOW TO ACCESS VIP MODEL OUTPUTS:" + "
+" +
+                        "1️⃣ Register on our partner platform using the link below." + "
+" +
+                        "2️⃣ Complete your first transaction (Minimum 500 BDT)." + "
+" +
+                        "3️⃣ Return here and click 'I Registered'." + "
+" +
+                        "4️⃣ Type your Partner Site ID in this chat." + "
+" +
+                        "5️⃣ Our team will verify within 24 hours and send your private access link." + "
 
-👉 CLICK HERE TO REGISTER 👈"""
-
+" +
+                        "👉 CLICK HERE TO REGISTER 👈")
         if WELCOME_IMAGE_URL:
             await context.bot.send_photo(
                 chat_id=user.id,
@@ -177,20 +184,28 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
     elif query.data == 'lang_bn':
         add_user(user.id, user.username or "", user.first_name or "", "bn")
-        welcome_text = """⚽ এলিট অ্যানালাইসিস হাবে আপনাকে স্বাগতম
+        welcome_text = ("⚽ এলিট অ্যানালাইসিস হাবে আপনাকে স্বাগতম" + "
 
-📊 দৈনিক ফুটবল পরিসংখ্যান এবং ডেটা-ভিত্তিক বিশ্লেষণ।
-🏆 প্রিমিয়ার লিগ, লা লিগা, চ্যাম্পিয়নস লিগ কভারেজ।
+" +
+                        "📊 দৈনিক ফুটবল পরিসংখ্যান এবং ডেটা-ভিত্তিক বিশ্লেষণ।" + "
+" +
+                        "🏆 প্রিমিয়ার লিগ, লা লিগা, চ্যাম্পিয়নস লিগ কভারেজ।" + "
 
-🎯 VIP মডেল আউটপুট অ্যাক্সেস করার উপায়:
-1️⃣ নিচের লিঙ্কটি ব্যবহার করে আমাদের পার্টনার প্ল্যাটফর্মে নিবন্ধন করুন।
-2️⃣ আপনার প্রথম লেনদেন সম্পন্ন করুন (সর্বনিম্ন 500 BDT)।
-3️⃣ এখানে ফিরে "আমি রেজিস্টার করেছি" তে ক্লিক করুন।
-4️⃣ এই চ্যাটে আপনার Partner Site ID টাইপ করুন।
-5️⃣ আমাদের টিম ২৪ ঘণ্টার মধ্যে যাচাই করবে এবং আপনার ব্যক্তিগত অ্যাক্সেস লিঙ্ক পাঠাবে।
+" +
+                        "🎯 VIP মডেল আউটপুট অ্যাক্সেস করার উপায়:" + "
+" +
+                        "1️⃣ নিচের লিঙ্কটি ব্যবহার করে আমাদের পার্টনার প্ল্যাটফর্মে নিবন্ধন করুন।" + "
+" +
+                        "2️⃣ আপনার প্রথম লেনদেন সম্পন্ন করুন (সর্বনিম্ন 500 BDT)।" + "
+" +
+                        "3️⃣ এখানে ফিরে 'আমি রেজিস্টার করেছি' তে ক্লিক করুন।" + "
+" +
+                        "4️⃣ এই চ্যাটে আপনার Partner Site ID টাইপ করুন।" + "
+" +
+                        "5️⃣ আমাদের টিম ২৪ ঘণ্টার মধ্যে যাচাই করবে এবং আপনার ব্যক্তিগত অ্যাক্সেস লিঙ্ক পাঠাবে।" + "
 
-👉 নিবন্ধন করতে এখানে ক্লিক করুন 👈"""
-
+" +
+                        "👉 নিবন্ধন করতে এখানে ক্লিক করুন 👈")
         if WELCOME_IMAGE_URL:
             await context.bot.send_photo(
                 chat_id=user.id,
@@ -209,12 +224,10 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
         row = get_user(user.id)
         lang = row[3] if row else 'en'
         update_user_status(user.id, 'awaiting_id')
-
         if lang == 'bn':
             caption = "📈 এখানে আমাদের কিছু উচ্চ-অডসের VIP বিশ্লেষণ রয়েছে! অ্যাক্সেস পেতে এখন এই চ্যাটে আপনার Partner Site ID নম্বর লিখুন।"
         else:
             caption = "📈 Here are some of our high-odds VIP analysis results! To get access, please type your Partner Site ID number in this chat now."
-
         if KUPON_IMAGE_URL:
             await context.bot.send_photo(
                 chat_id=user.id,
@@ -230,50 +243,46 @@ async def button_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user = update.effective_user
     text = update.message.text
-
     if text.startswith('/'):
         return
-
     row = get_user(user.id)
     if not row:
         await update.message.reply_text("Please choose your language first: /start")
         return
-
     lang = row[3]
     status = row[4]
-
     if status != 'awaiting_id':
         return
-
-    # ID validation: 3-20 digits only
     if not text.isdigit() or len(text) < 3 or len(text) > 20:
         if lang == 'bn':
             await update.message.reply_text("❌ অনুগ্রহ করে শুধুমাত্র ৩ থেকে ২০ সংখ্যার মধ্যে আপনার Partner Site ID নম্বরটি লিখুন।")
         else:
             await update.message.reply_text("❌ Please enter only a numeric Partner Site ID between 3 and 20 digits.")
         return
-
     update_user_status(user.id, 'pending', text)
-
     if lang == 'bn':
         await update.message.reply_text("✅ আপনার তথ্য ২৪ ঘণ্টার মধ্যে যাচাই করা হবে। অনুমোদিত হলে আপনার ব্যক্তিগত VIP লিঙ্ক পাঠানো হবে।")
     else:
         await update.message.reply_text("✅ Your information will be checked within 24 hours. Once approved, your private VIP link will be sent.")
-
-    # Notify admin
     username = user.username or "No username"
     first_name = user.first_name or "No name"
-    admin_msg = f"""🆕 NEW APPLICATION
+    admin_msg = ("🆕 NEW APPLICATION" + "
 
-👤 User: @{username}
-📝 Name: {first_name}
-🆔 Telegram ID: {user.id}
-🔢 Partner Site ID: {text}
-🌐 Language: {'Bengali' if lang == 'bn' else 'English'}
+" +
+                 "👤 User: @" + username + "
+" +
+                 "📝 Name: " + first_name + "
+" +
+                 "🆔 Telegram ID: " + str(user.id) + "
+" +
+                 "🔢 Partner Site ID: " + text + "
+" +
+                 "🌐 Language: " + ('Bengali' if lang == 'bn' else 'English') + "
 
-Approve with:
-/onay {user.id}"""
-
+" +
+                 "Approve with:" + "
+" +
+                 "/onay " + str(user.id))
     await context.bot.send_message(chat_id=ADMIN_ID, text=admin_msg)
 
 # ============================================================
@@ -284,109 +293,113 @@ async def list_pending(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if update.effective_user.id != ADMIN_ID:
         await update.message.reply_text("⛔ Unauthorized.")
         return
-
     pending = get_pending_users()
-
     if not pending:
         await update.message.reply_text("There are no pending ID submissions.")
         return
-
-    text = "⏳ PENDING APPLICATIONS:
+    text = "⏳ PENDING APPLICATIONS:" + "
 
 "
     for row in pending:
         tid, username, first_name, partner_id, created_at = row
-        text += f"👤 @{username or 'N/A'} | {first_name or 'N/A'}
+        text += "👤 @" + (username or 'N/A') + " | " + (first_name or 'N/A') + "
 "
-        text += f"🆔 Telegram ID: {tid}
+        text += "🆔 Telegram ID: " + str(tid) + "
 "
-        text += f"🔢 Partner ID: {partner_id}
+        text += "🔢 Partner ID: " + (partner_id or 'N/A') + "
 "
-        text += f"📅 Date: {created_at}
+        text += "📅 Date: " + created_at + "
 "
-        text += f"✅ Approve: /onay {tid}
+        text += "✅ Approve: /onay " + str(tid) + "
 
 "
-
     await update.message.reply_text(text)
 
 async def approve(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if update.effective_user.id != ADMIN_ID:
         await update.message.reply_text("⛔ Unauthorized.")
         return
-
     if not context.args:
         await update.message.reply_text("❌ Usage: /onay [telegram_user_id]")
         return
-
     try:
         target_id = int(context.args[0])
     except ValueError:
         await update.message.reply_text("❌ Invalid user ID.")
         return
-
     row = get_user_by_id(target_id)
     if not row:
-        await update.message.reply_text(f"❌ User {target_id} not found.")
+        await update.message.reply_text("❌ User " + str(target_id) + " not found.")
         return
-
     if row[4] != 'pending':
-        await update.message.reply_text(f"❌ User {target_id} is not pending (status: {row[4]}).")
+        await update.message.reply_text("❌ User " + str(target_id) + " is not pending (status: " + row[4] + ").")
         return
-
     if not row[5]:
-        await update.message.reply_text(f"❌ User {target_id} has no Partner Site ID.")
+        await update.message.reply_text("❌ User " + str(target_id) + " has no Partner Site ID.")
         return
-
     lang = row[3]
-
-    # Create ONE-TIME invite link (1 hour expiry, 1 member limit)
     try:
         invite_link = await context.bot.create_chat_invite_link(
             chat_id=PRIVATE_CHANNEL_ID,
             expire_date=datetime.now() + timedelta(hours=1),
             member_limit=1
         )
-
         update_user_status(target_id, 'approved')
-
         if lang == 'bn':
-            msg = f"""🎉 আপনার ID অনুমোদিত হয়েছে!
+            msg = ("🎉 আপনার ID অনুমোদিত হয়েছে!" + "
 
-⚠️ GÜVENLİK KURALLARI:
-• এই লিঙ্কটি শুধুমাত্র আপনার জন্য।
-• এটি শুধুমাত্র ১ বার ব্যবহার করা যাবে।
-• ১ ঘণ্টার মধ্যে ব্যবহার করুন, নতুবা মেয়াদ শেষ হয়ে যাবে।
-• অন্যের সাথে শেয়ার করলে সে প্রবেশ করবে, আপনি করতে পারবেন না।
+" +
+                   "⚠️ GÜVENLİK KURALLARI:" + "
+" +
+                   "• এই লিঙ্কটি শুধুমাত্র আপনার জন্য।" + "
+" +
+                   "• এটি শুধুমাত্র ১ বার ব্যবহার করা যাবে।" + "
+" +
+                   "• ১ ঘণ্টার মধ্যে ব্যবহার করুন, নতুবা মেয়াদ শেষ হয়ে যাবে।" + "
+" +
+                   "• অন্যের সাথে শেয়ার করলে সে প্রবেশ করবে, আপনি করতে পারবেন না।" + "
 
-🔗 আপনার VIP লিঙ্ক:
-{invite_link.invite_link}
+" +
+                   "🔗 আপনার VIP লিঙ্ক:" + "
+" +
+                   invite_link.invite_link + "
 
-তাড়াতাড়ি ক্লিক করুন এবং ক্যানেলে যোগ দিন!"""
+" +
+                   "তাড়াতাড়ি ক্লিক করুন এবং ক্যানেলে যোগ দিন!")
         else:
-            msg = f"""🎉 Your ID has been approved!
+            msg = ("🎉 Your ID has been approved!" + "
 
-⚠️ SECURITY RULES:
-• This link is for YOU only.
-• It can only be used ONCE.
-• Use it within 1 hour or it will expire.
-• If you share it with someone else, THEY will enter, YOU will not.
+" +
+                   "⚠️ SECURITY RULES:" + "
+" +
+                   "• This link is for YOU only." + "
+" +
+                   "• It can only be used ONCE." + "
+" +
+                   "• Use it within 1 hour or it will expire." + "
+" +
+                   "• If you share it with someone else, THEY will enter, YOU will not." + "
 
-🔗 YOUR VIP LINK:
-{invite_link.invite_link}
+" +
+                   "🔗 YOUR VIP LINK:" + "
+" +
+                   invite_link.invite_link + "
 
-Click quickly and join the channel!"""
-
+" +
+                   "Click quickly and join the channel!")
         await context.bot.send_message(chat_id=target_id, text=msg)
-        await update.message.reply_text(f"✅ User {target_id} approved. One-time invite link sent.")
-
+        await update.message.reply_text("✅ User " + str(target_id) + " approved. One-time invite link sent.")
     except Exception as e:
-        await update.message.reply_text(f"❌ Error creating invite link: {str(e)}
+        await update.message.reply_text("❌ Error creating invite link: " + str(e) + "
 
-Make sure:
-1. PRIVATE_CHANNEL_ID is correct
-2. Bot is admin in the private channel
-3. Bot has 'Invite Users via Link' permission")
+" +
+                                        "Make sure:" + "
+" +
+                                        "1. PRIVATE_CHANNEL_ID is correct" + "
+" +
+                                        "2. Bot is admin in the private channel" + "
+" +
+                                        "3. Bot has 'Invite Users via Link' permission")
 
 # ============================================================
 # MAIN
@@ -394,15 +407,12 @@ Make sure:
 def main():
     init_db()
     keep_alive()
-
     application = Application.builder().token(BOT_TOKEN).build()
-
     application.add_handler(CommandHandler("start", start))
     application.add_handler(CommandHandler("liste", list_pending))
     application.add_handler(CommandHandler("onay", approve))
     application.add_handler(CallbackQueryHandler(button_handler))
     application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_message))
-
     print("✅ Bot calisiyor...")
     application.run_polling()
 
